@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FileSphere</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Workspace">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">
+            <span></span>
+          </div>
+          <div>
+            <h1>FileSphere</h1>
+            <p>Local file workspace</p>
+          </div>
+        </div>
+
+        <div class="stats" aria-label="File statistics">
+          <div>
+            <strong id="fileCount">0</strong>
+            <span>Files</span>
+          </div>
+          <div>
+            <strong id="totalSize">0 B</strong>
+            <span>Total size</span>
+          </div>
+        </div>
+
+        <nav class="quick-filters" aria-label="Quick filters">
+          <button class="filter-button active" type="button" data-filter="all">All files</button>
+          <button class="filter-button" type="button" data-filter="text">Text</button>
+          <button class="filter-button" type="button" data-filter="code">Code</button>
+          <button class="filter-button" type="button" data-filter="data">Data</button>
+        </nav>
+      </aside>
+
+      <main class="workspace">
+        <header class="toolbar">
+          <div class="search-wrap">
+            <span aria-hidden="true">⌕</span>
+            <input id="searchInput" type="search" placeholder="Search name, extension, or content" autocomplete="off">
+          </div>
+          <div class="actions">
+            <label class="icon-button" for="uploadInput" title="Import file" aria-label="Import file">
+              <span aria-hidden="true">⇪</span>
+            </label>
+            <input id="uploadInput" type="file" hidden>
+            <button id="newFileButton" class="primary-button" type="button">New file</button>
+          </div>
+        </header>
+
+        <section class="content-grid">
+          <section class="file-browser" aria-label="Files">
+            <div class="section-heading">
+              <h2>Files</h2>
+              <select id="sortSelect" aria-label="Sort files">
+                <option value="name">Name</option>
+                <option value="size">Size</option>
+                <option value="updated">Updated</option>
+                <option value="extension">Extension</option>
+              </select>
+            </div>
+            <div id="fileList" class="file-list" role="list"></div>
+          </section>
+
+          <section class="editor-panel" aria-label="File editor">
+            <form id="fileForm">
+              <div class="editor-header">
+                <div>
+                  <label for="fileName">File name</label>
+                  <input id="fileName" name="fileName" type="text" required placeholder="notes.txt">
+                </div>
+                <div class="editor-actions">
+                  <button id="downloadButton" class="icon-button" type="button" title="Download file" aria-label="Download file">
+                    <span aria-hidden="true">↓</span>
+                  </button>
+                  <button id="deleteButton" class="danger-button" type="button">Delete</button>
+                  <button class="primary-button" type="submit">Save</button>
+                </div>
+              </div>
+
+              <div class="meta-row">
+                <span id="fileExtension">No extension</span>
+                <span id="fileSize">0 B</span>
+                <span id="fileUpdated">Not saved</span>
+              </div>
+
+              <label for="fileContent">Content</label>
+              <textarea id="fileContent" name="fileContent" spellcheck="false" placeholder="Start typing..."></textarea>
+            </form>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <template id="fileItemTemplate">
+      <button class="file-item" type="button" role="listitem">
+        <span class="file-icon" aria-hidden="true"></span>
+        <span class="file-main">
+          <strong></strong>
+          <small></small>
+        </span>
+        <span class="file-size"></span>
+      </button>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
